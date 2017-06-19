@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <div class="list">
-      <!--<div class="content" v-for="item in items">-->
       <div class="content" v-for="(item,index) in items" :key="index">
         <div class="pic fl">
           <a href=""></a>
@@ -14,13 +13,15 @@
             <a>查看国外价格</a>
           </div>
           <div class="introduce-t">
-						<span>
-						酒品描述：这是一款很牛逼很牛逼的酒。。来自250世界，666星球的星球大战葡萄酒。。唉，我
-编不下去~    假装这里有一个很牛逼很牛逼的介绍,酒品描述：这是一款很牛逼很牛逼的酒。。来自250世界，666星球的星球大战葡萄酒。。唉，我
-编不下去~    假装这里有一个很牛逼很牛逼的介绍,酒品描述：（文字过多做隐藏）。
-					</span>
+			<span>酒品描述：这是一款很牛逼很牛逼的酒。。来自250世界，666星球的星球大战葡萄酒。。唉，我
+编不下去~    假装这里有一个很牛逼很牛逼的介绍,酒品描述：这是一款很牛逼很牛逼的酒。。来自250世界，666星球的星球大战葡萄酒。。</span>
           </div>
-          <span class="nv">更多年份 >> </span>
+          <div id="nv" @click="toggle(item)">
+            <span class="nv" >更多年份:>></span>
+            <ul v-show="item.status">
+              <li v-for="(item,index) in nv" :key="index">{{item.nv}}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -30,8 +31,36 @@
   export default {
     data(){
       return {
-        items:[{msg:'1111',pri:'2222'},{msg:'333',pri:'4444'},{msg:'555',pri:'666'}],
+      	status:false,
+		  nv: [
+		  	{nv:'2012年'},
+			{nv:'2000年'},
+			{nv:'1985年'},
+			{nv:'未知年份'},
+          ],
+        items:[
+        	{msg:'#大师级酿酒师# 新西兰 莫阿纳霍克斯湾木图长相思干白葡萄酒',pri:'￥99.00元'},
+            {msg:"#大红虾三杯奖# 意大利Moscato D'Asti DOCG选择木马起泡葡萄酒",pri:'￥99.00元'},
+            {msg:'盲品神器 法国隆河高端村级自然酒 蒙塔内干红葡萄酒',pri:'￥99.00元'},
+			{msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
+            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
+            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
+			{msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
+            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
+            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
+			{msg:'很长很长的酒名介绍------',pri:'￥99.00元'}
+        ],
       }
+    },methods:{
+		  //切换滑块
+		  toggle: function(item) {
+			  if(typeof item.status=='undefined' ){
+				  this.$set(item,'status',false);
+			  }
+			  else{
+				  item.status=!item.status;
+			  }
+		  },
     }
   }
 </script>
@@ -99,6 +128,17 @@
               font-size: 15px;
             }
           }
+          #nv{
+            width:100px;
+            height:auto;
+            position: absolute;
+            >span{
+            }
+            ul{
+              display: block;
+              background-color: #fff;
+            }
+          }:hover{cursor:pointer;}
         }
       }
     }
