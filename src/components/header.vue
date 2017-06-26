@@ -26,10 +26,10 @@
 				</div>
 			</div>
 			<!--注册登陆-->
-			<div class="user fr">
-				<input type="submit" value="登陆" class="fl">
-				<input type="submit" value="注册">
-			</div>
+			<!--<div class="user fr">-->
+				<!--<input type="submit" value="登陆" class="fl">-->
+				<!--<input type="submit" value="注册">-->
+			<!--</div>-->
 		</header>
 	</div>
 </template>
@@ -135,22 +135,22 @@
 				}
 			}
 		}
-		.user{
-			width:12%;
-			height:50px;
-			line-height:50px;
-			input{
-				margin-top: 30px;
-				width:40%;
-				height:80%;
-				border-radius: 5px;
-				:focus{
-					background-color: lightblue;
-				}
-			}
-			input:nth-of-type(1){
-				margin-right: 15px;
-			}
-		}
+		/*.user{*/
+			/*width:12%;*/
+			/*height:50px;*/
+			/*line-height:50px;*/
+			/*input{*/
+				/*margin-top: 30px;*/
+				/*width:40%;*/
+				/*height:80%;*/
+				/*border-radius: 5px;*/
+				/*:focus{*/
+					/*background-color: lightblue;*/
+				/*}*/
+			/*}*/
+			/*input:nth-of-type(1){*/
+				/*margin-right: 15px;*/
+			/*}*/
+		/*}*/
 	}
 </style>
