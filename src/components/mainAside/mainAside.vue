@@ -1,8 +1,6 @@
 <template>
 	<div>
 		<aside>
-			<p>清除所有选择</p>
-			<p class="test"></p>
 
 			<div class="leibie">
 				<span>类别</span>
@@ -38,7 +36,7 @@
 </template>
 <script type="text/ecmascript-6">
 	export default {
-		name: 'asideV',
+		name: 'mainAside',
 		data() {
 			return {
 				radio2: 5,
@@ -111,10 +109,10 @@
 		}
 	};
 </script>
-<style lang="less" rel="stylesheet/less">
+<style scoped lang="less" rel="stylesheet/less">
 	aside{
-		position: absolute;
-		width:19%;
+
+		width:100%;
 		height:auto;
 		/*height:3500px;*/
 		background-color: #fff;

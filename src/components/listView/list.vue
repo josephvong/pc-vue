@@ -20,20 +20,10 @@
   export default {
     data(){
       return {
-        items:[
-        	{msg:'#大师级酿酒师# 新西兰 莫阿纳霍克斯湾木图长相思干白葡萄酒',pri:'￥99.00元'},
-            {msg:"#大红虾三杯奖# 意大利Moscato D'Asti DOCG选择木马起泡葡萄酒",pri:'￥99.00元'},
-            {msg:'盲品神器 法国隆河高端村级自然酒 蒙塔内干红葡萄酒',pri:'￥99.00元'},
-			{msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
-            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
-            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
-			{msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
-            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
-            {msg:'很长很长的酒名介绍------',pri:'￥99.00元'},
-			{msg:'很长很长的酒名介绍------',pri:'￥99.00元'}
-        ],
+
       }
-    },methods:{
+    },
+    methods:{
     }
   }
 </script>
@@ -58,7 +48,7 @@
             display: block;
             width:100%;
             height:100%;
-            background: url("../../static/images/2.jpg") no-repeat center center;
+            //background: url("../../static/images/2.jpg") no-repeat center center;
             background-size: cover;
           }
         }

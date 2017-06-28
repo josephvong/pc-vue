@@ -1,33 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import seacher from '../components/seacher.vue'
-import headerV from '@/components/header.vue'
-import asideV from '@/components/aside.vue'
-import listV from '@/components/list.vue'
+
+import resultView from 'components/listView/resultView'
+import defaultView from 'components/listView/defaultView'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '',
-      name: 'seacher',
-      component: seacher
+      path: '/',  // 根路径 默认转跳到 recommend
+      redirect:'/default',
     },
     {
-      path: '',
-      name: 'headerV',
-      component:headerV
+      path: '/default',
+      //name: 'default',
+      component: defaultView
     },
     {
-      path: '',
-      name: 'asideV',
-      component:asideV
-    },
-    {
-      path: '',
-      name: 'listV',
-      component:listV
+      path: '/result/:page',
+      //name: 'resultView',
+      component:resultView
     },
 
   ]
