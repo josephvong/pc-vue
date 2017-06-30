@@ -6,16 +6,27 @@
   		</div>
   	</div>
 
-		<el-row>
-		  <el-col :span="4">
-		  	<div class="main-left">
-					<mainAside></mainAside>
+		<div class="main-left">  <!--body 侧栏 -->
+			<div class="wrap">
+				<div class="tool-top">
+					<button @click="cleanTreeSelect">清空选中</button>
 				</div>
-		  </el-col>
-		  <el-col :span="20">
+				<div class="select-wrap">
+					<treeSelect ref="treeSelect" @tagSelect="onTreeTagSelect"></treeSelect>
+				</div>
+			</div>
+		</div>
+
+		<el-row type="flex" justify="center">  <!--body 主体 -->
+		  <el-col :offset="3" :md="16" :lg="18">
 		  	<div class="main-right">
+		  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
+		  									@selectionTopTagClick="onTopTagClick"
+		  		></selectionTag>
+
 					<router-view>
 					</router-view>
+
 				</div>
 		  </el-col>
 		</el-row>
@@ -31,17 +42,65 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 
 import mainHeader from 'components/mainHeader/mainHeader'
-import mainAside from 'components/mainAside/mainAside'
 import bottomPage from 'components/bottomPage/bottomPage'
+import treeSelect from 'components/treeSelect/treeSelect'
+import selectionTag from 'components/selectionTag/selectionTag'
+
 export default {
   name: 'app',
+  data(){
+  	return {
+  		selectionArr:[]  // 左侧列表 选中 常量 数组
+  	}
+  },
+  methods:{
+  	cleanTreeSelect(){  // 左侧点击删除 按钮
+  		this.$refs.treeSelect.cleanSelectInput();
+  	},
+
+  	onTreeTagSelect(arr){  // 左侧 点击 树状 列表选项
+  		this.selectionArr = [];
+  		this.selectionArr = arr
+  	},
+
+  	onTopTagClick(text){  // 顶部选中标签 点击事件
+  		let index= this.selectionArr.indexOf(text) // 获取点击标签index（位置）
+  		this.selectionArr.splice(index,1);  // 在 selectionArr 删掉目标 tag
+  		this.$refs.treeSelect.removeSingleInput(text,index);
+  	},
+
+  	//------------------------------------------------------------
+	  ...mapMutations({
+      setSearchText:'SET_SEARCH_TEXT'
+    })
+  },
+  watch:{
+  	selectionArr(newArr,oldArr){
+  		let searchText ='';
+  		if(!newArr.length){
+  			this.$router.push({
+	    		path: '/default'
+	    	})
+  		}else{
+  			searchText = newArr.join();
+  			console.log(searchText);
+  			this.$router.push({
+	    		path: '/result/1'
+	    	})
+	    	this.setSearchText(searchText)
+  		}
+
+
+  	}
+  },
   components:{
   	mainHeader,
-  	mainAside,
-  	bottomPage
-
+  	bottomPage,
+  	treeSelect,
+  	selectionTag
   }
 }
 </script>
@@ -51,7 +110,7 @@ export default {
 	margin:0 auto;
 	width:100%;
 	padding-top:100px;
-	padding-bottom:160px;
+	padding-bottom:140px;
 	.fix-header{
 		position: fixed;
 		left:0;
@@ -59,6 +118,7 @@ export default {
 		width:100%;
 		height: 100px;
 		z-index: 100;
+		background: yellow;
 		.wrap{
 			position: relative;
 			margin:0 auto;
@@ -67,10 +127,46 @@ export default {
 			border-bottom:1px solid red;
 		}
 	}
+	.main-left{
+		position: fixed;
+		left:0;
+		top:100px;
+		bottom:100px;
+		width:280px;
+		background:white;
+		z-index: 100;
+		.wrap{
+			position: relative;
+			width:100%;
+			height:100%;
+			padding-top:50px;
+			overflow: hidden;
+			.tool-top{
+				position: absolute;
+				top:0px; left:0;
+				width:100%; height:50px;
+				padding:10px 0;
+				text-align: center;
+				button{
+					width:50px; height:30px;line-height: 30px;
+					margin: 0 10px;
+					border-radius:5px;
+					color:white;
+					background: red;
+				}
+			}
+			.select-wrap{
+				width:100%;
+				height:100%;
+				overflow-y: scroll;
+			}
+		}
+	}
 	.main-right{
-		border-left:2px solid red;
-		padding:20px;
+		padding:20px 40px;
 		min-height: 600px;
+		border-left:2px solid red;
+		border-right:2px solid red;
 	}
 	/*脚部*/
 	.fix-footer{
@@ -78,7 +174,7 @@ export default {
 		left:0;
 		bottom:0;
 		width:100%;
-		height: 150px;
+		height: 100px;
 		background-color: lightgreen;
 		.wrap{
 			margin:0 auto;

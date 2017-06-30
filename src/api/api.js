@@ -1,4 +1,5 @@
 import axios from 'axios'
+import jsonp from 'jsonp'
 
 export function getWordSuggest(value){
 	let params = new URLSearchParams();
@@ -29,3 +30,12 @@ export function getSearchResult(searchText,pageIndex){
     console.log(err);
   })
 }
+
+export function getRightSideData(){
+  return axios.request('http://m.9kacha.com/staticConfig/all_conditems.json',{
+    responseType: 'json',
+  }).then((res)=>{ //数据链接成功
+     return Promise.resolve(res)
+  })
+}
+

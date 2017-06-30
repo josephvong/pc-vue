@@ -9,7 +9,7 @@
 				<div class="file-btn" @click.stop="openFile"></div>
 			</div>
 			<div class="image-wrap" v-show="fileSearch">
-					<fileSearch></fileSearch>
+				<fileSearch></fileSearch>
 			</div>
 		</div>
 

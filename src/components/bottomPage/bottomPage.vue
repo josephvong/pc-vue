@@ -1,6 +1,6 @@
 <template>
 <el-row>
-	  <el-col :span="20" :offset="6" v-if="totalMount"><!-- :page-size="totalPage" -->
+	  <el-col :span="20" :offset="6" v-if="totalMount"><!-- -->
 		  <el-pagination
 	      @current-change="handleCurrentChange"
 	      :page-size="10"
@@ -26,14 +26,21 @@ export default {
 	computed:{
 		//--------------------
 		...mapGetters([
-			'totalMount'
+			'totalMount',
+			'searchText'
 		])
 	},
 	methods:{
     handleCurrentChange(val) {
     	this.$router.push({ path: `/result/${val}`})
-      //console.log(`当前页: `);
+      console.log(`当前页: ${this.currentPage}`);
     }
+	},
+	watch:{
+		searchText(){
+			this.currentPage =1;
+			//console.log('new page')
+		}
 	},
 	components:{
 

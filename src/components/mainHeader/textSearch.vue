@@ -37,23 +37,17 @@ export default {
 	        })
         }
       },
-      handleSelect(item) {
+      handleSelect(item) {  // 选中跳转
       	this.$router.push({
       		path: '/result/1'
       	}) // 切换路由
         this.setSearchText(item.value)
-        /*getSearchResult(item.value).then((res)=>{
-        	console.log(res)
-        })*/
       },
-      searchClick(){
+      searchClick(){  // 确认按钮跳转
       	if(this.inputValue){
       		this.$router.push({ path: '/result/1'}) // 切换路由
       		this.setSearchText(this.inputValue)
       	}
-
-      	//alert(this.inputValue);
-      	//this.$router.push({ path: 'result'})
       },
 
 
