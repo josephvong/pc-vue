@@ -44,6 +44,7 @@
 
 <script>
 import {mapMutations} from 'vuex'
+import eventHub from 'assets/js/eventHub'
 
 import mainHeader from 'components/mainHeader/mainHeader'
 import bottomPage from 'components/bottomPage/bottomPage'
@@ -54,7 +55,8 @@ export default {
   name: 'app',
   data(){
   	return {
-  		selectionArr:[]  // 左侧列表 选中 常量 数组
+  		selectionArr:[],  // 左侧列表 选中 常量 数组
+  		textSearchMode:false  // 是否输入框搜索状态 true 为编辑搜索，false 为选择
   	}
   },
   methods:{
@@ -79,22 +81,23 @@ export default {
     })
   },
   watch:{
-  	selectionArr(newArr,oldArr){
+  	selectionArr(newArr,oldArr){ // 监控 选择选项数组的改变
   		let searchText ='';
-  		if(!newArr.length){
-  			this.$router.push({
-	    		path: '/default'
-	    	})
-  		}else{
+  		if(!newArr.length){  // 若数组 为空时 （顶部选项被清空）
+  			if(!this.textSearchMode){ // 判断 是否 是 通过 编辑搜索的方式来清空，不是的话 回到默认页面
+  				this.$router.push({
+		    		path: '/default'
+		    	})
+  			}
+  		}else{  // 数组没有清空时 ，拼接数组 进行搜索
   			searchText = newArr.join();
   			console.log(searchText);
   			this.$router.push({
 	    		path: '/result/1'
 	    	})
+	    	this.textSearchMode = false
 	    	this.setSearchText(searchText)
   		}
-
-
   	}
   },
   components:{
@@ -102,6 +105,12 @@ export default {
   	bottomPage,
   	treeSelect,
   	selectionTag
+  },
+  mounted(){
+  	eventHub.$on('textSearchEnter',()=>{  // 监听 输入框 派发的全局事件
+  		this.textSearchMode = true;  // 将 搜索模式 设置为 输入搜索 模式
+  		this.selectionArr = [];  // 选项搜索 模式 的数组清空
+  	})
   }
 }
 </script>

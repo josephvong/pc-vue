@@ -4,6 +4,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import listView from '../list/listItem.vue'
   export default {
     name:'defaultView',
     data(){
@@ -11,6 +12,9 @@
 
       }
     },
+  components:{
+    listView
+  },
     methods:{
     }
   }

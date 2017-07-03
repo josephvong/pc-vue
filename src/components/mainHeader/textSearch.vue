@@ -1,5 +1,5 @@
 <template>
-	<div class="text-search"> <!--文字搜索框--><!--  @select="handleSelect"-->
+	<div class="text-search" > <!--文字搜索框--><!--  @select="handleSelect"-->
 		 <el-autocomplete
       class="auto-complete"
       v-model="inputValue"
@@ -48,12 +48,14 @@ export default {
       	this.$router.push({
       		path: '/result/1'
       	}) // 切换路由
-        this.setSearchText(item.value)
+        this.setSearchText(item.value) // 调用 vuex 里面的Mutation 函数
+        eventHub.$emit('textSearchEnter') // 利用全局事件总线派发事件
       },
       searchClick(){  // 确认按钮跳转
       	if(this.inputValue){
       		this.$router.push({ path: '/result/1'}) // 切换路由
-      		this.setSearchText(this.inputValue)
+      		this.setSearchText(this.inputValue)  // 调用 vuex 里面的Mutation 函数
+      		eventHub.$emit('textSearchEnter') // 利用全局事件总线派发事件
       	}
       },
       onCheckedChange(){
