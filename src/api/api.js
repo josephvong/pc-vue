@@ -14,13 +14,16 @@ export function getWordSuggest(value){
   })
 }
 
-export function getSearchResult(searchText,pageIndex){
+export function getSearchResult(searchText,pageIndex,isBuyOnly){
 	let params = new URLSearchParams();
 	params.append('dtype',1)
   let data = {
     wordStr:searchText,
     size:10,
     offset:pageIndex*10-10,
+    rowSearch:{
+      buyable:isBuyOnly?'1':null
+    }
   }
   params.append('jparams',JSON.stringify(data)); // 转换传参结构
 

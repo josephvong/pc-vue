@@ -7,4 +7,8 @@ export const totalMount = (state)=>{
 	return state.totalMount
 }
 
+export const buyOnly = (state)=>{
+	return state.buyOnly
+}
+
 

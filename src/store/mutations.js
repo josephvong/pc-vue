@@ -15,6 +15,10 @@ const mutations = {  // 所有方法 的 容器
 		state.totalMount = number
 	},
 
+	[types.SET_BUY_ONLY](state,flag){  // 更改 当前 显示可购买 状态值
+		state.buyOnly = flag
+	}
+
 
 }
 

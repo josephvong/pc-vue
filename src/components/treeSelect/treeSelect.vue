@@ -1,6 +1,6 @@
 <template>
 <div class="tree-select">
-	<div class="country-remove" @click.stop="clearSubInput">x</div>  <!--还原 国家列表 按钮-->
+	<div class="country-remove" v-show="currentCountry" @click.stop="clearSubInput">x</div>  <!--还原 国家列表 按钮-->
 	<el-collapse v-if="tagData" v-model="activeNames" @change="handleChange" ref="treeSelect">
 		<el-collapse-item v-for="(Value,Key,Index) in tagData" v-if="Value.itemLevel==0" :title="Key" :name="Key" :key="Index">
 			<!-- <h2 style="color:red">{{Value.multiSelect==0?'单选':'多选'}}</h2> -->
@@ -47,6 +47,8 @@
 </template>
 <script type="text/ecmascript-6">
 import {getRightSideData} from 'api/api'
+import eventHub from 'assets/js/eventHub'  // 全局事件总线
+
 export default {
 	name: 'treeSelect',
 	data() {
@@ -96,7 +98,8 @@ export default {
 			selectInput.forEach((item)=>{
 				textArr.push(item.id)
 			})
-			this.$emit("tagSelect",textArr);
+			this.$emit("tagSelect",textArr); // 派发此组件的事件 给 父组件监听
+			eventHub.$emit("tagSelect") // 派发全局事件 给兄弟组件监听
 		},
 
 		cleanSelectInput(){  // 清除 全部选中项 选中项
@@ -146,8 +149,8 @@ export default {
 		position: absolute;
 		width:20px;
 		height:20px;
-		right:10px;
-		top: 10px ;
+		right:25px;
+		top: 65px ;
 		border-radius: 50%;
 		text-align: center;
 		line-height: 18px;

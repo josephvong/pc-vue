@@ -8,6 +8,8 @@ const state = {
 
 	totalMount:0,	 // 结果总数
 
+	buyOnly:false, // 只显示可购买（默认为false）
+
 
 }
 

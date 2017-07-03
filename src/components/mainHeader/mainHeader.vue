@@ -6,7 +6,7 @@
 		<div class="tool-wrap">
 			<div class="search-wrap">
 				<textSearch></textSearch>
-				<div class="file-btn" @click.stop="openFile"></div>
+				<div style="display:none" class="file-btn" @click.stop="openFile"></div>
 			</div>
 			<div class="image-wrap" v-show="fileSearch">
 				<fileSearch></fileSearch>

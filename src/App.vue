@@ -6,6 +6,7 @@
   		</div>
   	</div>
 
+		<!--  -->
 		<div class="main-left">  <!--body 侧栏 -->
 			<div class="wrap">
 				<div class="tool-top">
@@ -18,7 +19,7 @@
 		</div>
 
 		<el-row type="flex" justify="center">  <!--body 主体 -->
-		  <el-col :offset="3" :md="16" :lg="18">
+		  <el-col  :md="{span:19,offset:5}" :lg="{span:20,offset:4}">
 		  	<div class="main-right">
 		  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
 		  									@selectionTopTagClick="onTopTagClick"
@@ -111,29 +112,32 @@ export default {
 	width:100%;
 	padding-top:100px;
 	padding-bottom:140px;
+
 	.fix-header{
 		position: fixed;
 		left:0;
 		top:0;
 		width:100%;
 		height: 100px;
+		border-bottom:1px solid #ccc;
 		z-index: 100;
-		background: yellow;
+		background: white;
 		.wrap{
 			position: relative;
-			margin:0 auto;
+			margin:-1px auto 0;
 			width:100%;
 			max-width: 1920px;
-			border-bottom:1px solid red;
 		}
 	}
+
 	.main-left{
 		position: fixed;
 		left:0;
 		top:100px;
 		bottom:100px;
-		width:280px;
+		width:250px;
 		background:white;
+		transition:all 0.5s;
 		z-index: 100;
 		.wrap{
 			position: relative;
@@ -158,23 +162,24 @@ export default {
 			.select-wrap{
 				width:100%;
 				height:100%;
+				padding:20px 0;
 				overflow-y: scroll;
 			}
 		}
 	}
 	.main-right{
+		margin:0 auto;
 		padding:20px 40px;
 		min-height: 600px;
-		border-left:2px solid red;
-		border-right:2px solid red;
 	}
+
 	/*脚部*/
 	.fix-footer{
 		position: fixed;
 		left:0;
 		bottom:0;
 		width:100%;
-		height: 100px;
+		height: 80px;
 		background-color: lightgreen;
 		.wrap{
 			margin:0 auto;
@@ -182,16 +187,20 @@ export default {
 			max-width: 1920px;
 		}
 	}
-
-	/*@media only screen and (max-width:980px ){
+	@media only screen and (min-width:1440px ){
    	.main-left{
-   		position: fixed;
-   		left:0;
-   		top:100px;
-   		background: yellow;
-   		transform:translateX(-100%)
+	   	 width:300px;
    	}
-	}*/
+	}
+	@media only screen and (max-width:992px ){
+   	.main-left{
+   		background: yellow;
+   		transform:translateX(-95%)
+   	}
+   	.main-left:hover{
+   		transform:translateX(0%)
+   	}
+	}
 }
 
 </style>

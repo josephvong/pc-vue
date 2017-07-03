@@ -8,4 +8,6 @@ export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT'  // 设置 搜索字段 的方�
 
 export const SET_TOTAL_MOUNT ='SET_TOTAL_MOUNT'
 
+export const SET_BUY_ONLY = 'SET_BUY_ONLY'  // 设置 是否可购买 的方法
+
 // -------------- -----------------
