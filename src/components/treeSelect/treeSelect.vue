@@ -1,10 +1,9 @@
 <template>
 <div class="tree-select">
-	<div class="country-remove" v-show="currentCountry" @click.stop="clearSubInput">x</div>  <!--还原 国家列表 按钮-->
+	<div class="country-remove" v-show="currentCountry && isCountryExp" @click.stop="clearSubInput">x</div>  <!--还原 国家列表 按钮-->
 	<el-collapse v-if="tagData" v-model="activeNames" @change="handleChange" ref="treeSelect">
-		<el-collapse-item v-for="(Value,Key,Index) in tagData" v-if="Value.itemLevel==0" :title="Key" :name="Key" :key="Index">
-			<!-- <h2 style="color:red">{{Value.multiSelect==0?'单选':'多选'}}</h2> -->
 
+		<el-collapse-item v-for="(Value,Key,Index) in tagData" v-if="Value.itemLevel==0" :title="Key" :name="Key" :key="Index">
 			<ul>
 				<li v-for="(item,index) in Value.item" :key="index" :name="item.name" :type="Key" v-show="Key!='国家'||!currentCountry||item.name==currentCountry">
 					<input :type="Value.multiSelect==0?'radio':'checkbox'" :name="Key" :id="item.name" :catalogType="Key" @click="onTagClick" />
@@ -56,6 +55,7 @@ export default {
 			tagData:null,
 			currentCountry:'',
 			activeNames:[],//'残糖量'
+			isCountryExp:false,  // 国家列表是否展开（默认否）
 			regionList:[], // 产区子列表
 			styleList:[],  // 风格子列表
 			levelList:[],	// 等级子列表
@@ -63,7 +63,20 @@ export default {
 	},
 	methods: {
 		handleChange(){
-
+			this.defineCountryExp(this.activeNames);
+		},
+		defineCountryExp(arr){ // 判定 国家列表是否展开 的函数
+			let index = -1
+			for (var i = 0; i < arr.length; i++) {
+				if(arr[i]=="国家"){
+					index = i
+				}
+			}
+			if(index<0){
+				this.isCountryExp = false
+			}else{
+				this.isCountryExp = true
+			}
 		},
 		getSublist(){  //联动 生成  子列表
 			this.regionList = []; this.levelList = []; this.styleList=[];
@@ -157,12 +170,14 @@ export default {
 		font-size: 12px;
 		font-weight: bold;
 		color:white;
-		background: #5290F7;
+		background: #961436;
 		cursor:pointer;
 		z-index: 5;
 	}
+
 	li{
 		padding: 3px 0;
+		font-size: 16px;
 	}
 	input{
 		display:none;
@@ -180,10 +195,18 @@ export default {
 		white-space: nowrap;
 	}
 	input:checked + label{
-		border:1px dashed #ccc;
+		border:1px dashed #961436;
 	}
 
 
 }
 
+</style>
+<style lang="less" rel="stylesheet/less">
+.el-collapse .el-collapse-item__header{
+	font-size: 18px;
+	i{
+		font-size: 13px;
+	}
+}
 </style>

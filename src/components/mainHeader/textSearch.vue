@@ -9,7 +9,7 @@
       @select="handleSelect"
       size="large"
     ></el-autocomplete>
-    <button class="search-btn" @click="searchClick">搜索</button>
+    <button ref="searchBtn" class="search-btn" @click="searchClick">搜索</button>
     <div class="buy-only">
 			<el-checkbox v-model="isBuyOnly" @change="onCheckedChange" >只查找可购买</el-checkbox>
     </div>
@@ -27,8 +27,8 @@ export default {
 	data(){
 		return {
       inputValue: '',
-      isBuyOnly:false
-      //suggestion:[]
+      isBuyOnly:false,
+      suggestion:[]
 		}
 	},
 	components:{
@@ -39,8 +39,8 @@ export default {
         let suggestion = null
         if(queryString){
         	getWordSuggest(queryString).then((res)=>{
-	        	suggestion = suggestListNormalize(res.wordOnSuggest)
-	        	cb(suggestion);
+	        	this.suggestion = suggestListNormalize(res.wordOnSuggest)
+	        	cb(this.suggestion);
 	        })
         }
       },
@@ -61,6 +61,7 @@ export default {
       onCheckedChange(){
       	this.setBuyOnly(this.isBuyOnly)
       },
+
       //--------------- 引入 Mutation 方法-----------------
       ...mapMutations({
 	      setSearchText:'SET_SEARCH_TEXT', // 将 mutation 里面的 ‘SET_SEARCH_TEXT’（mut-types里面设的常量名）映射给组件中的‘setSearchText’
@@ -69,23 +70,37 @@ export default {
 
 	},
 	mounted(){
+		let This = this; // 组件的 实例 this
+		document.body.onkeyup=function(event){  // 搜索按钮 监听 ‘键盘Enter’ 按键
+			if(event.keyCode==13 && !This.suggestion.length){
+				This.searchClick()
+			}
+		}
+		// 监听全局左侧栏的选择事件
 		eventHub.$on('tagSelect',()=>{
 			if(this.inputValue!==''){
 				this.inputValue=''
 			}
 		})
+
+		// 监听全局 底部 关联词 点击 事件
+		eventHub.$on('relateWordClick',(wordStr)=>{
+			this.inputValue = wordStr;
+		})
+
+
+
+
 	}
 }
 </script>
 <style scoped lang="less" rel="stylesheet/less">
-
 .text-search{
 	position: relative;
 	width:100%;
 	height:100%;
 	display: flex;
 	align-items: center;
-	border:1px solid red;
 	transform:translateY(-15px);
 	.auto-complete{
 		flex:1 1 auto;
@@ -95,16 +110,34 @@ export default {
 		flex:0 0 100px;
 		width:100px;
 		height: 80%;
+		line-height:  40px;
+		font-size: 20px;
 		color:white;
-		background: blue;
+		border-radius:5px;
+		background: #cc1b4a;
 	}
 	.buy-only{
 		position: absolute;
 		display: inline-block;
 		left:0; top:110%;
 		height:28px;
+		.el-checkbox{
+			color:white;
+		}
 	}
-
 }
 
+</style>
+<style lang="less" rel="stylesheet/less">
+.el-checkbox__inner.hover{
+  border-color: #cc1b4a !important;
+}
+.el-checkbox__input.is-focus .el-checkbox__inner {
+  background-color: white;
+  border-color: #cc1b4a;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner{
+  background-color: #cc1b4a !important;
+  border-color: #cc1b4a !important;
+}
 </style>

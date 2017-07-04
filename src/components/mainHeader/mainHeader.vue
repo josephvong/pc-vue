@@ -1,8 +1,6 @@
 <template>
 	<div class='header'>
-		<!--logo-->
-<!-- 		<div class="logo"><a href=""></a></div>  -->
-		<!--搜索框-->
+		<img class="logo" src="./logo.png"/>
 		<div class="tool-wrap">
 			<div class="search-wrap">
 				<textSearch></textSearch>
@@ -54,21 +52,13 @@ export default {
 	align-items:center;
 	justify-content:center;
 	height:100px;
-	background-color: #fff;
 	.logo{
-		position: absolute;
-		width:150px;
-		height:50px;
-		left:0;
-		top:50%;
-		transform:translateY(-50%);
-		a{
-			display: block;
-			margin:0 auto;
-			width: auto;
-			height: 100%;
-			background: url("./logo.png") no-repeat center center;
-		}
+		position: fixed;
+		width:auto;
+		height:80px;
+		left:10px;
+		top:10px;
+
 	}
 
 	.tool-wrap{

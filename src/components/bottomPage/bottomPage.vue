@@ -1,15 +1,14 @@
 <template>
-<el-row>
-	  <el-col :span="20" :offset="6" v-if="totalMount"><!-- -->
-		  <el-pagination
-	      @current-change="handleCurrentChange"
-	      :page-size="10"
-	      :current-page.sync="currentPage"
-	      layout="prev, pager, next, jumper"
-	      :total="totalMount">
-	    </el-pagination>
-	  </el-col>
-</el-row>
+<div class="bottom-page" >
+	<el-pagination
+		v-if="totalMount"
+    @current-change="handleCurrentChange"
+    :page-size="10"
+    :current-page.sync="currentPage"
+    layout="prev, pager, next, jumper"
+    :total="totalMount">
+  </el-pagination>
+</div>
 </template>
 <script type="text/ecmascript-6">
 import {mapGetters} from 'vuex'
@@ -24,6 +23,9 @@ export default {
 		}
 	},
 	computed:{
+		routerIndex(){
+			return this.$route.params.page
+		},
 		//--------------------
 		...mapGetters([
 			'totalMount',
@@ -37,9 +39,11 @@ export default {
     }
 	},
 	watch:{
-		searchText(){
-			this.currentPage =1;
-			//console.log('new page')
+		/*searchText(){
+
+		},*/
+		routerIndex(newIndex){
+			this.currentPage =  parseInt(newIndex)
 		}
 	},
 	components:{
@@ -49,12 +53,34 @@ export default {
 
 	},
 	mounted(){
-
+		//console.log(this.$route.params);
 	}
 }
 </script>
 <style scoped lang="less" rel="stylesheet/less">
+.bottom-page{
+	position: absolute;
+	right:30px;
+	top:-28px;
 
-
-
+}
+</style>
+<style  lang="less" rel="stylesheet/less">
+.el-pager li{
+	border:0;
+	margin:0 2px;
+}
+.el-pager li:hover {
+  color: #961436;
+}
+.el-pagination button:hover {
+  color: #961436;
+}
+.el-pager li.active{
+	  border-color: #961436;
+    background-color: #961436;
+}
+.el-pager li.active:hover{
+	color:white;
+}
 </style>

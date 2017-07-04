@@ -45,32 +45,21 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .selection-tag{
 	position: relative;
-	padding:0 20px 10px 10px;
-	border:1px solid blue;
-	.clean-btn{
-		position: absolute;
-		top:0px; right:0;
-		width:50px; height:30px;
-		line-height: 30px;
-		text-align: center;
-		font-size: 18px;
-		color:white;
-		border-radius:5px;
-		background: blue;
-	}
+	padding:10px 20px 20px 20px;
+	border-bottom:1px solid #cccccc;
 	.tag{
 		display: inline-block;
 		padding:0 15px 0 15px;
 		margin:0 5px 5px 0;
-		line-height: 30px;
+		line-height: 40px;
 		text-align: center;
-		font-size: 18px;
-		color:white;
+		font-size: 20px;
+		color:#666666;
 		border-radius:5px;
-		background: red;
+		border:1px solid #999999;
 		.span{
 			margin-left:5px;
-			font-size:5px;
+			font-size:14px;
 		}
 	}
 

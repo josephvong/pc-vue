@@ -10,7 +10,7 @@
 		<div class="main-left">  <!--body 侧栏 -->
 			<div class="wrap">
 				<div class="tool-top">
-					<button @click="cleanTreeSelect">清空选中</button>
+					<button @click="cleanTreeSelect">重新选择</button>
 				</div>
 				<div class="select-wrap">
 					<treeSelect ref="treeSelect" @tagSelect="onTreeTagSelect"></treeSelect>
@@ -34,9 +34,7 @@
 
 		<footer class="fix-footer">
 			<div class="wrap">
-				<div class="page-wrap">
-					<bottomPage></bottomPage>
-				</div>
+				<bottomPage></bottomPage>
 			</div>
 		</footer>
   </div>
@@ -85,9 +83,8 @@ export default {
   		let searchText ='';
   		if(!newArr.length){  // 若数组 为空时 （顶部选项被清空）
   			if(!this.textSearchMode){ // 判断 是否 是 通过 编辑搜索的方式来清空，不是的话 回到默认页面
-  				this.$router.push({
-		    		path: '/default'
-		    	})
+  				//this.$router.push({ path: '/default' })  //不跳回默认起始页
+  				return true
   			}
   		}else{  // 数组没有清空时 ，拼接数组 进行搜索
   			searchText = newArr.join();
@@ -107,10 +104,17 @@ export default {
   	selectionTag
   },
   mounted(){
-  	eventHub.$on('textSearchEnter',()=>{  // 监听 输入框 派发的全局事件
+  	// 监听 输入框 派发的全局事件
+  	eventHub.$on('textSearchEnter',()=>{
   		this.textSearchMode = true;  // 将 搜索模式 设置为 输入搜索 模式
   		this.selectionArr = [];  // 选项搜索 模式 的数组清空
   	})
+
+		// 监听 底部 关联词 派发的全局事件
+  	eventHub.$on('relateWordClick',(wordStr)=>{
+			this.textSearchMode = true;  // 将 搜索模式 设置为 输入搜索 模式
+  		this.selectionArr = [];  // 选项搜索 模式 的数组清空
+		})
   }
 }
 </script>
@@ -130,7 +134,7 @@ export default {
 		height: 100px;
 		border-bottom:1px solid #ccc;
 		z-index: 100;
-		background: white;
+		background: #961436;
 		.wrap{
 			position: relative;
 			margin:-1px auto 0;
@@ -152,20 +156,21 @@ export default {
 			position: relative;
 			width:100%;
 			height:100%;
-			padding-top:50px;
+			padding-top:60px;
 			overflow: hidden;
 			.tool-top{
 				position: absolute;
 				top:0px; left:0;
-				width:100%; height:50px;
+				width:100%; height:60px;
 				padding:10px 0;
 				text-align: center;
 				button{
-					width:50px; height:30px;line-height: 30px;
+					width:100px; height:40px;line-height: 40px;
+					font-size: 18px;
 					margin: 0 10px;
 					border-radius:5px;
 					color:white;
-					background: red;
+					background: #961436;
 				}
 			}
 			.select-wrap{
@@ -188,22 +193,23 @@ export default {
 		left:0;
 		bottom:0;
 		width:100%;
-		height: 80px;
-		background-color: lightgreen;
+		height: 60px;
+		padding-top: 30px;
+		background-color: #e6e6e6;
 		.wrap{
-			margin:0 auto;
+			position: relative;
 			width:100%;
 			max-width: 1920px;
+			margin:0 auto;
 		}
 	}
 	@media only screen and (min-width:1440px ){
    	.main-left{
-	   	 width:300px;
+	   	width:300px;
    	}
 	}
 	@media only screen and (max-width:992px ){
    	.main-left{
-   		background: yellow;
    		transform:translateX(-95%)
    	}
    	.main-left:hover{
