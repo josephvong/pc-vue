@@ -2,7 +2,9 @@
 <div class="relate-word" >
 	<h4>相关搜索</h4>
 	<div class="word-wrap">
-		<span v-for="item in relateWordArr" @click="relateWordSelect(item)">{{item}}</span>
+		<div class="word" v-for="item in relateWordArr" @click="relateWordSelect(item)">
+			<span>{{item}}</span>
+		</div>
 	</div>
 </div>
 </template>
@@ -56,7 +58,7 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .relate-word{
   width:100%;
-  padding: 10px;
+  padding:10px 30px;
   h4{
   	line-height: 40px;
   	font-size: 26px;
@@ -64,13 +66,20 @@ export default {
   }
 	.word-wrap{
 		padding:10px;
-		span{
+		.word{
+			display:inline-block;
+			text-align: center;
 			cursor:pointer;
-			margin-right:15px;
-			line-height: 30px;
-			font-size: 20px;
-		}:hover{
-			color:#961436;
+			padding:0 20px;
+			line-height: 40px;
+			span{
+				font-size: 18px;
+				color:blue;
+				border-bottom:1px solid blue;
+			}:hover{
+				color:#961436;
+				border-bottom:1px solid #961436;
+			}
 		}
 	}
 }

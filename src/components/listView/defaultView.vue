@@ -1,6 +1,6 @@
 <template>
   <div class="default-view">
-    <div class="default">默认<br/>空白</div>
+    <div class="default"><!-- 默认<br/>空白 --></div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -21,7 +21,7 @@ export default {
 .default-view{
   position: relative;
   width:100%;
-  height:900px;
+  height:500px;
   .default{
     position: absolute;
     left:50%;

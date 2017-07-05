@@ -14,13 +14,15 @@ export function getWordSuggest(value){
   })
 }
 
-export function getSearchResult(searchText,pageIndex,isBuyOnly){
+export function getSearchResult(searchText,pageIndex,isBuyOnly,is_correct=1){
 	let params = new URLSearchParams();
 	params.append('dtype',1)
   let data = {
     wordStr:searchText,
     size:10,
     offset:pageIndex*10-10,
+    format_rd:'search-k-w',
+    is_correct:is_correct,
     rowSearch:{
       buyable:isBuyOnly?'1':null
     }

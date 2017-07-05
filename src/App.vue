@@ -19,7 +19,7 @@
 		</div>
 
 		<el-row type="flex" justify="center">  <!--body 主体 -->
-		  <el-col  :md="{span:19,offset:5}" :lg="{span:20,offset:4}">
+		  <el-col  :md="{span:18,offset:6}" :lg="{span:19,offset:5}">
 		  	<div class="main-right">
 		  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
 		  									@selectionTopTagClick="onTopTagClick"
@@ -49,6 +49,7 @@ import bottomPage from 'components/bottomPage/bottomPage'
 import treeSelect from 'components/treeSelect/treeSelect'
 import selectionTag from 'components/selectionTag/selectionTag'
 
+
 export default {
   name: 'app',
   data(){
@@ -76,7 +77,8 @@ export default {
   	//------------------------------------------------------------
 	  ...mapMutations({
       setSearchText:'SET_SEARCH_TEXT'
-    })
+    }),
+
   },
   watch:{
   	selectionArr(newArr,oldArr){ // 监控 选择选项数组的改变
@@ -101,7 +103,7 @@ export default {
   	mainHeader,
   	bottomPage,
   	treeSelect,
-  	selectionTag
+  	selectionTag,
   },
   mounted(){
   	// 监听 输入框 派发的全局事件
@@ -126,6 +128,7 @@ export default {
 	padding-top:100px;
 	padding-bottom:140px;
 
+
 	.fix-header{
 		position: fixed;
 		left:0;
@@ -147,7 +150,7 @@ export default {
 		position: fixed;
 		left:0;
 		top:100px;
-		bottom:100px;
+		bottom:60px;
 		width:250px;
 		background:white;
 		transition:all 0.5s;
@@ -156,34 +159,36 @@ export default {
 			position: relative;
 			width:100%;
 			height:100%;
-			padding-top:60px;
-			overflow: hidden;
+			padding-top:50px;
+			overflow:hidden;
+
 			.tool-top{
 				position: absolute;
 				top:0px; left:0;
-				width:100%; height:60px;
+				width:100%; height:50px;
 				padding:10px 0;
 				text-align: center;
 				button{
-					width:100px; height:40px;line-height: 40px;
-					font-size: 18px;
+					width:100px; height:30px;line-height: 30px;
+					font-size: 14px;
 					margin: 0 10px;
 					border-radius:5px;
 					color:white;
+					transform:translateX(-10px);
 					background: #961436;
 				}
 			}
 			.select-wrap{
 				width:100%;
 				height:100%;
-				padding:20px 0;
+				padding:0 0 20px 0;
 				overflow-y: scroll;
 			}
 		}
 	}
 	.main-right{
 		margin:0 auto;
-		padding:20px 40px;
+		padding:15px 30px;
 		min-height: 600px;
 	}
 

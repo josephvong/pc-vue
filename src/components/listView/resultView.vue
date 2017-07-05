@@ -1,7 +1,8 @@
 <template>
   <div class="result-view">
-   <!--  <p>{{currentPage}} {{searchText}}</p>
-    <div v-if="listData.length">{{listData.length}}</div> -->
+      <correctWord v-show="correctShow" :correctLetter="correctLetter"
+      @wrongWordClick='onWrongWordClick'>
+      </correctWord>
     <noResult v-show="!listData.length"></noResult>
     <ul class="result-list" v-if="listData.length">
       <listItem v-for="(item,index) in listData" :wineData="item" :key="index"></listItem>
@@ -16,12 +17,15 @@ import {mapGetters,mapMutations} from 'vuex'
 import listItem from 'components/listItem/listItem'
 import noResult from 'base/noResult/noResult'
 import relateWord from 'components/relateWord/relateWord'
+import correctWord from 'components/correctWord/correctWord'
   export default {
     name:'resultView',
     data(){
       return {
         listData:[],  // 结果列表数据
-        relateWordData:[]  // 关联词语 列表数据
+        relateWordData:[],  // 关联词语 列表数据
+        correctLetter:"",
+        correctShow:false
 
       }
     },
@@ -31,20 +35,26 @@ import relateWord from 'components/relateWord/relateWord'
       },
       //--------------------
       ...mapGetters([
-        'searchText',
-        'buyOnly'
+        'searchText', // 搜索词
+        'buyOnly',    // 是否 仅选择购买
       ])
     },
     methods:{
-      searchDataGet(searchText,pageIndex,buyOnly){ // 获取数据
-        getSearchResult(searchText,pageIndex,buyOnly).then((res)=>{
+      searchDataGet(searchText,pageIndex,buyOnly,is_correct){ // 获取数据
+        getSearchResult(searchText,pageIndex,buyOnly,is_correct).then((res)=>{
           if(res.description=="ok"){
             this.setTotalMount(res.matchedNum)
             this.listData = res.jsonData;
             this.relateWordData = res.wordRelated
+            this.correctLetter = res.wordOnSearch
+            this.correctShow = res.wordOnSearch==res.wordOnInput?false:true
             document.body.scrollTop = 0;
           }
         })
+      },
+
+      onWrongWordClick(text){
+        this.searchDataGet(this.searchText,this.currentPage,this.buyOnly,0)
       },
 
       //-------------Mutations----------
@@ -63,10 +73,11 @@ import relateWord from 'components/relateWord/relateWord'
       },
       buyOnly(newBuyOnly){
         this.searchDataGet(this.searchText,this.currentPage,newBuyOnly)
-      }
+      },
+
     },
     components:{
-      listItem,noResult,relateWord
+      listItem,noResult,relateWord,correctWord
     },
     created(){
       if(!this.searchText){
