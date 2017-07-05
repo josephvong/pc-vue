@@ -72,7 +72,8 @@ export default {
 	mounted(){
 		let This = this; // 组件的 实例 this
 		document.body.onkeyup=function(event){  // 搜索按钮 监听 ‘键盘Enter’ 按键
-			if(event.keyCode==13 && !This.suggestion.length ){
+
+			if(event.keyCode==13  ){//&& !This.suggestion.length
 				This.searchClick()
 			}
 		}
