@@ -60,9 +60,9 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .bottom-page{
 	position: absolute;
-	right:30px;
+	left:50%;
 	top:-28px;
-
+	transform:translateX(-50%);
 }
 </style>
 <style  lang="less" rel="stylesheet/less">

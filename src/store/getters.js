@@ -11,4 +11,3 @@ export const buyOnly = (state)=>{
 	return state.buyOnly
 }
 
-

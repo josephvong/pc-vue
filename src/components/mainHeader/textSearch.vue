@@ -72,7 +72,7 @@ export default {
 	mounted(){
 		let This = this; // 组件的 实例 this
 		document.body.onkeyup=function(event){  // 搜索按钮 监听 ‘键盘Enter’ 按键
-			if(event.keyCode==13 && !This.suggestion.length){
+			if(event.keyCode==13 && !This.suggestion.length ){
 				This.searchClick()
 			}
 		}
@@ -111,7 +111,7 @@ export default {
 		width:100px;
 		height: 80%;
 		line-height:  40px;
-		font-size: 20px;
+		font-size: 18px;
 		color:white;
 		border-radius:5px;
 		background: #cc1b4a;

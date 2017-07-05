@@ -10,7 +10,6 @@ const state = {
 
 	buyOnly:false, // 只显示可购买（默认为false）
 
-
 }
 
 export default state

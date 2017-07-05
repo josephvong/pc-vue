@@ -45,21 +45,21 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .selection-tag{
 	position: relative;
-	padding:10px 20px 20px 20px;
+	padding:5px 20px 10px 20px;
 	border-bottom:1px solid #cccccc;
 	.tag{
 		display: inline-block;
-		padding:0 15px 0 15px;
+		padding:0 10px 0 10px;
 		margin:0 5px 5px 0;
-		line-height: 40px;
+		line-height: 28px;
 		text-align: center;
-		font-size: 20px;
+		font-size: 16px;
 		color:#666666;
 		border-radius:5px;
 		border:1px solid #999999;
 		.span{
 			margin-left:5px;
-			font-size:14px;
+			font-size:10px;
 		}
 	}
 
