@@ -57,6 +57,7 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .correct-word{
   width:100%;
+  padding:0 25px;
   .wrong-word{
   	cursor:pointer;
   	color:red;

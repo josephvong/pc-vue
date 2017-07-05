@@ -1,6 +1,8 @@
 <template>
   <div class="result-view">
-    <correctWord v-if="correctLetter!=searchText" :correctLetter="correctLetter" @wrongWordClick='onWrongWordClick'></correctWord>
+      <correctWord v-show="correctShow" :correctLetter="correctLetter"
+      @wrongWordClick='onWrongWordClick'>
+      </correctWord>
     <noResult v-show="!listData.length"></noResult>
     <ul class="result-list" v-if="listData.length">
       <listItem v-for="(item,index) in listData" :wineData="item" :key="index"></listItem>
@@ -22,7 +24,8 @@ import correctWord from 'components/correctWord/correctWord'
       return {
         listData:[],  // 结果列表数据
         relateWordData:[],  // 关联词语 列表数据
-        correctLetter:""
+        correctLetter:"",
+        correctShow:false
 
       }
     },
@@ -44,6 +47,7 @@ import correctWord from 'components/correctWord/correctWord'
             this.listData = res.jsonData;
             this.relateWordData = res.wordRelated
             this.correctLetter = res.wordOnSearch
+            this.correctShow = res.wordOnSearch==res.wordOnInput?false:true
             document.body.scrollTop = 0;
           }
         })
