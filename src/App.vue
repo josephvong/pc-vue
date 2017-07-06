@@ -18,19 +18,15 @@
 			</div>
 		</div>
 
-		<el-row type="flex" justify="center">  <!--body 主体 -->
-		  <el-col  :md="{span:18,offset:6}" :lg="{span:19,offset:5}">
-		  	<div class="main-right">
-		  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
-		  									@selectionTopTagClick="onTopTagClick"
-		  		></selectionTag>
+  	<div class="main-right"> <!--body 主体 -->
+  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
+  									@selectionTopTagClick="onTopTagClick"
+  		></selectionTag>
 
-					<router-view>
-					</router-view>
+			<router-view>
+			</router-view>
 
-				</div>
-		  </el-col>
-		</el-row>
+		</div>
 
 		<footer class="fix-footer">
 			<div class="wrap">
@@ -151,7 +147,9 @@ export default {
 		left:0;
 		top:100px;
 		bottom:40px;
-		width:250px;
+		//width:250px;
+		width:20%;
+		//min-width:10%;
 		background:white;
 		transition:all 0.5s;
 		z-index: 100;
@@ -186,8 +184,7 @@ export default {
 		}
 	}
 	.main-right{
-		margin:0 auto;
-		padding:15px 30px;
+		padding:15px;
 		min-height: 600px;
 	}
 
@@ -207,18 +204,17 @@ export default {
 			margin:0 auto;
 		}
 	}
-	@media only screen and (min-width:1440px ){
-   	.main-left{
-	   	width:300px;
-   	}
-	}
-	@media only screen and (max-width:992px ){
+
+	@media only screen and (max-width:1200px ){
    	.main-left{
    		transform:translateX(-95%)
    	}
    	.main-left:hover{
    		transform:translateX(0%)
    	}
+   	.main-right{
+			padding:15px 15px 15px 30px;
+		}
 	}
 }
 

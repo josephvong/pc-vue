@@ -12,7 +12,7 @@
 				</li>
 			</ul>
 
-			<el-collapse v-if="Key=='国家'" v-show="currentCountry" ref="countrySubTree" >
+			<el-collapse v-if="Key=='国家'" v-show="currentCountry" ref="countrySubTree" class="sub-collapse" >
 				<el-collapse-item title="产区" ref="regionTree" name="产区" v-show="regionList.length">
 					<ul>
 						<li v-for="(item,index) in regionList" :key="index" @mouseenter="onTagHover" :toolShow="true">
@@ -275,5 +275,10 @@ export default {
 .el-collapse-item__wrap{
 	background: white;
 	border-bottom:none;
+}
+.sub-collapse .el-collapse-item__header{
+	height:36px;
+	line-height: 36px;
+	font-size: 16px;
 }
 </style>
