@@ -6,16 +6,17 @@
     <div class="introduce">
       <!--酒名称-->
       <h5>
-        <a :src="wineData.h5_url" :data-link="wineData.h5_url" @click.prevent="linkClick" >
+        <a :href="wineData.h5_url"  target="_blank">
             <span v-html="wineData.name.name_ch" v-if="wineData.name.name_ch"></span>
-            <span v-html="wineData.name.name_en" v-if="wineData.name.name_cn =='' && wineData.name.name_en" style="color: #333"></span>
+            <span v-html="wineData.name.name_en"></span>
         </a>
       </h5>
 
       <!--价格展示-->
       <div class="price" v-show="wineData.price || wineData.buy_info.length">
         <span class="fr" v-show="wineData.price">￥{{wineData.price}}.00元</span>
-        <p class="shangjia" v-show="wineData.retailers">商家：<span v-html="wineData.retailers"></span></p>
+        <p class="shangjia" v-show="wineData.retailers">商家：
+          <span v-html="wineData.retailers"></span></p>
       </div>
 
       <!--地理-->
@@ -42,7 +43,9 @@
 
       <!--葡萄品种-->
       <div class="variety" v-show="wineData.grape">
-        <span class="fl"><i class="iconfont">&#xe613;</i>葡萄品种：</span>
+        <span class="fl"><i class="iconfont">&#xe613;</i>
+          葡萄品种：
+        </span>
         <ul>
           <li class="pz-1" v-for="item in wineData.grape">
            <span v-html="item.name_ch"></span>/<span v-html="item.name_en"></span>
@@ -111,11 +114,10 @@ export default {
     },
   },
   data(){
-    return {
+	  return {
     }
   },
   created(){
-
   },
   methods:{
     linkClick(event){
@@ -184,9 +186,6 @@ export default {
     }
     li {
       float: left;
-      >a{
-        color:#333;
-      }
     }
     > h5 {
       display: block;
@@ -196,7 +195,10 @@ export default {
       overflow: hidden;
       font-size: 16px;
       >a{
-        :hover{cursor: pointer;}
+
+      }
+      span:nth-of-type(1){
+        color: #333;
       }
       span:nth-of-type(2){
         color:#ccc;
