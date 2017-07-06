@@ -9,7 +9,7 @@ input, select, textarea, button, img { vertical-align: middle; -webkit-appearanc
 input, button { -webkit-appearance: none; }
 button { border: 0 none; background-color: transparent; cursor: pointer; }
 body, th, td, input, select, textarea, button,a { font-family:"Microsoft YaHei",Arial,"ArialMT","Helvetica Neue", Helvetica,sans-serif; }
-a { text-decoration: none; font-family: "Microsoft YaHei",Arial,"ArialMT","Helvetica Neue", Helvetica,sans-serif;}
+a { text-decoration: none; font-family: "Microsoft YaHei",Arial,"ArialMT","Helvetica Neue", Helvetica,sans-serif; }
 a:active, a:hover { text-decoration: none; }
 a:focus { outline: none; }
 address, caption, cite, code, dfn, em, var { font-style: normal; font-weight: normal; }
@@ -25,8 +25,7 @@ button:focus { outline: none; }
 input{border: none;outline: none;}
 *:not[input] { -webkit-user-select:none; user-select:none; }
 * { box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; }
-/*ul:hover , li:hover{cursor: pointer;}*/
-/*a:hover{cursor: pointer;}*/
+/*a:hover{color:#BE344E;}*/
 /*自定义*/
 body{ min-width:720px;  margin: 0 auto;}
 .fl{
