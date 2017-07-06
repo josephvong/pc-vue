@@ -147,9 +147,7 @@ export default {
 		left:0;
 		top:100px;
 		bottom:40px;
-		//width:250px;
 		width:20%;
-		//min-width:10%;
 		background:white;
 		transition:all 0.5s;
 		z-index: 100;
@@ -184,7 +182,8 @@ export default {
 		}
 	}
 	.main-right{
-		padding:15px;
+		width:97%;
+		padding:15px 0;
 		min-height: 600px;
 	}
 
@@ -213,7 +212,7 @@ export default {
    		transform:translateX(0%)
    	}
    	.main-right{
-			padding:15px 15px 15px 30px;
+			padding:15px 0px 15px 0px;
 		}
 	}
 }
