@@ -4,39 +4,42 @@
       <img :src="wineData.pic_url" :data-link="wineData.h5_url" @click.prevent="linkClick"/>
     </div>
     <div class="introduce">
-      <h5><a :data-link="wineData.h5_url" @click.prevent="linkClick" >
-        <span v-html="wineData.name.name_ch"></span>  <span v-html="wineData.name.name_eh"></span></a></h5>
+      <!--酒名称-->
+      <h5>
+        <a :src="wineData.h5_url" :data-link="wineData.h5_url" @click.prevent="linkClick" >
+            <span v-html="wineData.name.name_ch" v-if="wineData.name.name_ch"></span>
+            <span v-html="wineData.name.name_en" v-if="wineData.name.name_cn =='' && wineData.name.name_en" style="color: #333"></span>
+        </a>
+      </h5>
+
       <!--价格展示-->
       <div class="price" v-show="wineData.price || wineData.buy_info.length">
-        <span v-show="wineData.price">￥{{wineData.price}}.00元</span>
-        <!--<span v-show="wineData.buy_info.length" >商家：<em v-for="item in wineData.buy_info">{{item.retailers}}/{{item.price}}元</em> </span>-->
-        <span class="shangjia" v-show="wineData.retailers">商家：<span v-html="wineData.retailers"></span></span>
+        <span class="fr" v-show="wineData.price">￥{{wineData.price}}.00元</span>
+        <p class="shangjia" v-show="wineData.retailers">商家：<span v-html="wineData.retailers"></span></p>
       </div>
+
       <!--地理-->
       <div class="geography">
         <ul>
           <li class="guojia" v-if="wineData.country.name_ch">
-            <a href="javascript:;">
-              <i class="iconfont">&#xe606;</i><span v-html="wineData.country.name_ch"></span>/ <span v-html="wineData.country.name_en"></span>
-            </a>
+              <i class="iconfont">&#xe606;</i>
+            <span v-html="wineData.country.name_ch"></span>/<span v-html="wineData.country.name_en"></span>
           </li>
           <li class="chanqu" v-if="wineData.region.name_ch">
-            <a href="javascript:;">
-              <i class="iconfont">&#xe603;</i><span v-html="wineData.region.name_ch"></span><span v-html="wineData.region.name_en"></span>/
-            </a>
+              <i class="iconfont">&#xe603;</i>
+            <span v-html="wineData.region.name_ch"></span>/<span v-html="wineData.region.name_en"></span>
           </li>
           <li class="zichanqu" v-show="wineData.sub_region" v-if="wineData.sub_region.name_ch">
-            <a href="javascript:;">
-              <i class="iconfont">&#xe61a;</i><span v-html="wineData.sub_region.name_ch"></span>/<span v-html="wineData.sub_region.name_en"></span>
-            </a>
+              <i class="iconfont">&#xe61a;</i>
+            <span v-html="wineData.sub_region.name_ch"></span>/<span v-html="wineData.sub_region.name_en"></span>
           </li>
           <li class="jiuzhuang" v-show="wineData.winery" v-if="wineData.winery.name_ch">
-            <a href="javascript:;" >
-              <i class="iconfont">&#xe60b;</i><span v-html="wineData.winery.name_ch"></span>/<span v-html="wineData.winery.name_en"></span>
-            </a>
+              <i class="iconfont">&#xe60b;</i>
+            <span v-html="wineData.winery.name_ch"></span>/<span v-html="wineData.winery.name_en"></span>
           </li>
         </ul>
       </div>
+
       <!--葡萄品种-->
       <div class="variety" v-show="wineData.grape">
         <span class="fl"><i class="iconfont">&#xe613;</i>葡萄品种：</span>
@@ -46,6 +49,7 @@
           </li>
         </ul>
       </div>
+
       <!--类型-->
       <div class="type" v-if="wineData.wine_type.name_ch">
         <p>
@@ -53,35 +57,39 @@
           酒类型：<span v-html="wineData.wine_type.name_ch"></span>/<span v-html="wineData.wine_type.name_en"></span>
         </p>
       </div>
+
       <!--等级-->
       <div class="grade" v-show="wineData.winery_level.name_ch">
         <p v-show="wineData.winery_level.name_ch">
           <i class="iconfont">&#xe601;</i>
-          产地等级：<span v-html="wineData.winery_level.name_ch"></span>/<span v-html="wineData.winery_level.name_en"></span>
+          产地等级：<span v-html="wineData.region_level.name_ch"></span>/<span v-html="wineData.region_level.name_en"></span>
         </p>
         <p v-show="wineData.region_level.name_ch">
           <i class="iconfont">&#xe60c;</i>
-          酒庄等级：<span v-html="wineData.region_level.name_ch"></span>/<span v-html="wineData.region_level.name_en"></span>
+          酒庄等级：<span v-html="wineData.winery_level.name_ch"></span>/<span v-html="wineData.winery_level.name_en"></span>
         </p>
-        <p v-show="wineData.winery_level.name_ch">
+        <p v-show="wineData.level.name_ch">
           <i class="iconfont">&#xe610;</i>
-          酒款等级：<span v-html="wineData.winery_level.name_ch"></span>/<span v-html="wineData.winery_level.name_en"></span>
+          酒款等级：<span v-html="wineData.level.name_ch"></span>/<span v-html="wineData.level.name_en"></span>
         </p>
       </div>
+
       <!--场合-->
-      <div class="situation" v-if="wineData.occasion.name_ch">
-        <span class="fl">
-          <i class="iconfont">&#xe605;</i>
-          场合：<span v-html="wineData.occasion.name_ch"></span>
-        </span>
-      </div>
+      <!--<div class="situation" v-if="wineData.occasion.name_ch">-->
+        <!--<p class="fl">-->
+          <!--<i class="iconfont">&#xe605;</i>-->
+          <!--场合：<span v-html="wineData.occasion.name_ch"></span>-->
+        <!--</p>-->
+      <!--</div>-->
+
       <!--配餐-->
       <div class="pantry" v-if="wineData.recipe_pair.name_ch">
-        <span class="fl">
+        <p class="fl">
           <i class="iconfont">&#xe611;</i>
           配餐：<span v-html="wineData.recipe_pair.name_ch"></span>
-        </span>
+        </p>
       </div>
+
       <!--更多-->
       <!--<div class="more">-->
         <!--<ul>-->
@@ -104,11 +112,10 @@ export default {
   },
   data(){
     return {
-      change:"<em></em>>"
     }
   },
   created(){
-//	  this.change ="<em></em>"
+
   },
   methods:{
     linkClick(event){
@@ -122,7 +129,8 @@ export default {
 <style>
   /*字体标红*/
   em.search-k-w{
-    color: blue !important;
+    color:#BE344E !important;
+    font-weight: bold;
   }
 </style>
 <style scoped lang="less" rel="stylesheet/less">
@@ -152,17 +160,15 @@ export default {
 
 .list-item{
   width:100%;
-  margin:0 30px;
-  padding: 1%;
   border-bottom: 1px solid #ccc;
-
   .pic{
     width:115px;
     height:140px;
     padding: 2px;
-    margin-top: 5px;
+    margin:8px 0px;
     overflow: hidden;
-    position: absolute;
+    float: left;
+    /*position: absolute;*/
     >img{
       width: 100%;
       height: 100%;
@@ -172,6 +178,7 @@ export default {
     margin-left: 150px;
     width: 100%;
     height: 100%;
+    padding: 10px 0;
     span{
       color: #333;
     }
@@ -188,27 +195,35 @@ export default {
       font-weight: normal;
       overflow: hidden;
       font-size: 16px;
-
-    }:hover{cursor: pointer;}
+      >a{
+        :hover{cursor: pointer;}
+      }
+      span:nth-of-type(2){
+        color:#ccc;
+      }
+    }
     .price {
       span:nth-of-type(1) {
-        margin-right: 15%;
+        margin-right: 20%;
         font-size: 17px;
         color:#BE344E;
       }
       .shangjia{
         >span{
+          display: inline-block;
           font-size: 13px;
+          padding: 2px 5px;
           color:#333;
+          background-color: #eee;
+          border: 1px solid #ccc;
+          border-radius: 20px;
         }
-
       }
     }
     .geography {
       width: 100%;
       height: auto;
       margin-top: 5px;
-      /*margin-bottom: 30px;*/
       > ul {
         height: 20px;
         > li {
@@ -220,7 +235,7 @@ export default {
     }
     .variety {
       width: 100%;
-      height: 20px;
+      height: auto;
       margin-top:5px;
       word-break:keep-all;/* 不换行 */
       white-space:nowrap;/* 不换行 */
@@ -255,7 +270,7 @@ export default {
     }
     .situation {
       width: 100%;
-      height: 20px;
+      /*height: 20px;*/
       margin-top:5px;
     }
     .pantry {

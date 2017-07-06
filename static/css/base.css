@@ -25,7 +25,6 @@ button:focus { outline: none; }
 input{border: none;outline: none;}
 *:not[input] { -webkit-user-select:none; user-select:none; }
 * { box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; }
-/*a:hover{color:#BE344E;}*/
 /*自定义*/
 body{ min-width:720px;  margin: 0 auto;}
 .fl{
