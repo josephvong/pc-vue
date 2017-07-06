@@ -1,11 +1,12 @@
 <template>
 	<div class="text-search" > <!--文字搜索框--><!--  @select="handleSelect"-->
 		 <el-autocomplete
+		 	ref="autocomplete"
       class="auto-complete"
       v-model="inputValue"
       :fetch-suggestions="querySearch"
-      placeholder="请输入内容"
-      :trigger-on-focus="false"
+      placeholder=""
+      :trigger-on-focus="true"
       @select="handleSelect"
       size="large"
     ></el-autocomplete>
@@ -72,9 +73,9 @@ export default {
 	mounted(){
 		let This = this; // 组件的 实例 this
 		document.body.onkeyup=function(event){  // 搜索按钮 监听 ‘键盘Enter’ 按键
-
 			if(event.keyCode==13  ){//&& !This.suggestion.length
 				This.searchClick()
+				This.$refs.searchBtn.focus();
 			}
 		}
 		// 监听全局左侧栏的选择事件
@@ -88,9 +89,6 @@ export default {
 		eventHub.$on('relateWordClick',(wordStr)=>{
 			this.inputValue = wordStr;
 		})
-
-
-
 
 	}
 }

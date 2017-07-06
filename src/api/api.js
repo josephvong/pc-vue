@@ -1,6 +1,7 @@
 import axios from 'axios'
 import jsonp from 'jsonp'
 
+// 输入框关联词 接口
 export function getWordSuggest(value){
 	let params = new URLSearchParams();
 	params.append('dtype',2)
@@ -14,6 +15,7 @@ export function getWordSuggest(value){
   })
 }
 
+// 字段搜索接口
 export function getSearchResult(searchText,pageIndex,isBuyOnly,is_correct=1){
 	let params = new URLSearchParams();
 	params.append('dtype',1)
@@ -22,7 +24,8 @@ export function getSearchResult(searchText,pageIndex,isBuyOnly,is_correct=1){
     size:10,
     offset:pageIndex*10-10,
     format_rd:'search-k-w',
-    is_correct:is_correct,
+    is_correct:is_correct, // 默认开启 错误匹配
+    is_alias:0, // 默认禁用别名适配
     rowSearch:{
       buyable:isBuyOnly?'1':null
     }
@@ -36,6 +39,8 @@ export function getSearchResult(searchText,pageIndex,isBuyOnly,is_correct=1){
   })
 }
 
+
+// 右侧 数据 导入
 export function getRightSideData(){
   return axios.request('http://m.9kacha.com/staticConfig/all_conditems.json',{
     responseType: 'json',

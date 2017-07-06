@@ -150,7 +150,7 @@ export default {
 		position: fixed;
 		left:0;
 		top:100px;
-		bottom:60px;
+		bottom:40px;
 		width:250px;
 		background:white;
 		transition:all 0.5s;
@@ -159,12 +159,11 @@ export default {
 			position: relative;
 			width:100%;
 			height:100%;
-			padding-top:50px;
+			padding-bottom:50px;
 			overflow:hidden;
-
 			.tool-top{
 				position: absolute;
-				top:0px; left:0;
+				bottom:0px; left:0;
 				width:100%; height:50px;
 				padding:10px 0;
 				text-align: center;
