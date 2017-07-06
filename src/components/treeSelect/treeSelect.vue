@@ -189,7 +189,7 @@ export default {
 		width:14px;
 		height:14px;
 		right:25px;
-		top: 48px ;
+		top: 52px ;
 		border-radius: 50%;
 		text-align: center;
 		line-height: 12px;
@@ -236,13 +236,18 @@ export default {
 	label{
 		display: inline-block;
 		width:100%;
-		height:24px;
-		line-height: 24px;
+		height:28px;
+		line-height: 28px;
 		padding:0 10px;
 		cursor:pointer;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		background: #f5f5f5;
+		color: #666666;
+	}
+	label:hover{
+		background: #e0e0e0;
 	}
 	input:checked + label{
 		border:1px dashed #961436;
@@ -254,13 +259,13 @@ export default {
 </style>
 <style lang="less" rel="stylesheet/less">
 .el-collapse .el-collapse-item__header{
-	height:30px;
-	line-height: 30px;
-	font-size: 14px;
-	font-weight: bold;
+	height:32px;
+	line-height: 32px;
+	font-size: 16px;
+	// font-weight: bold;
 	color:#333333;
 	i{
-		font-size: 13px;
+		font-size: 10px;
 	}
 }
 </style>

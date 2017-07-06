@@ -198,7 +198,7 @@ export default {
 		left:0;
 		bottom:0;
 		width:100%;
-		height: 60px;
+		height: 40px;
 		padding-top: 30px;
 		background-color: #e6e6e6;
 		.wrap{
