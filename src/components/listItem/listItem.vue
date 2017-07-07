@@ -58,20 +58,22 @@
         </div>
 
         <!--类型-->
-        <div class="type" v-if="wineData.wine_type.name_ch">
+        <div class="type" v-show="wineData.wine_type.name_ch">
           <p>
             <i class="iconfont">&#xe60d;</i>
             酒类型：<span v-html="wineData.wine_type.name_ch"></span>/<span v-html="wineData.wine_type.name_en"></span>
+              <i class="iconfont sugar">&#xe607;</i>
+              糖份：<span v-html="wineData.sugar.name_ch"></span>/<span v-html="wineData.sugar.name_en"></span>
           </p>
         </div>
 
         <!--等级-->
-        <div class="grade" v-show="wineData.winery_level.name_ch">
+        <div class="grade" v-show="wineData.region_level.name_ch">
           <p v-show="wineData.region_level.name_ch">
             <i class="iconfont">&#xe601;</i>
             产地等级：<span v-html="wineData.region_level.name_ch"></span>/<span v-html="wineData.region_level.name_en"></span>
           </p>
-          <p v-show="wineData.region_level.name_ch">
+          <p v-show="wineData.winery_level.name_ch">
             <i class="iconfont">&#xe60c;</i>
             酒庄等级：<span v-html="wineData.winery_level.name_ch"></span>/<span v-html="wineData.winery_level.name_en"></span>
           </p>
@@ -239,13 +241,9 @@ export default {
       width: 100%;
       margin-top:7px;
       line-height: 20px;
-      ul {
-        > li {
-          width: 24%;
-          height: 100%;
-          margin-right:1% ;
+        .sugar{
+            margin-left: 50px;
         }
-      }
     }
     .grade {
       width: 100%;
