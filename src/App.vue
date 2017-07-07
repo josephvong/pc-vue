@@ -139,6 +139,7 @@ export default {
 			margin:-1px auto 0;
 			width:100%;
 			max-width: 1920px;
+			min-width: 1200px;
 		}
 	}
 
@@ -148,6 +149,7 @@ export default {
 		top:100px;
 		bottom:40px;
 		width:20%;
+		min-width: 240px;
 		background:white;
 		transition:all 0.5s;
 		z-index: 100;
