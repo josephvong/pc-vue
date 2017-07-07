@@ -116,11 +116,13 @@ export default {
 		flex:0 0 60px;
 		width:100px;
 		height: 82.5%;
+		margin-left: 10px;
 		line-height:  40px;
 		font-size: 18px;
 		color:white;
 		border: 1px solid #cc1b4a;
-		border-radius:0px 5px 5px 0;
+		border-radius: 5px;
+		/*border-radius:0px 5px 5px 0;*/
 		background: #cc1b4a;
 		>i{
 			font-size: 20px;
