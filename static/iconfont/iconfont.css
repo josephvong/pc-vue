@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1499141957022'); /* IE9*/
-  src: url('iconfont.eot?t=1499141957022#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1499141957022') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1499141957022') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1499141957022#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1499410199329'); /* IE9*/
+  src: url('iconfont.eot?t=1499410199329#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1499410199329') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1499410199329') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1499410199329#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -66,4 +66,18 @@
 .icon-detail_zichanqu_icon:before { content: "\e61a"; }
 
 .icon-icon_sellerx:before { content: "\e61b"; }
+
+.icon-icon_close:before { content: "\e61c"; }
+
+.icon-icon_menu_close:before { content: "\e61d"; }
+
+.icon-icon_open:before { content: "\e61e"; }
+
+.icon-icon_delete:before { content: "\e61f"; }
+
+.icon-icon_menu_open:before { content: "\e620"; }
+
+.icon-icon_camera:before { content: "\e621"; }
+
+.icon-icon_search:before { content: "\e622"; }
 

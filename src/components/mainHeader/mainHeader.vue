@@ -52,12 +52,13 @@ export default {
 	align-items:center;
 	justify-content:center;
 	height:100px;
+
 	.logo{
 		position: fixed;
 		width:auto;
-		height:80px;
-		left:10px;
-		top:10px;
+		height:70px;
+		left:20px;
+		top:15px;
 
 	}
 

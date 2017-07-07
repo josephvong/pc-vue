@@ -122,7 +122,6 @@ export default {
     }
   },
   created(){
-  	console.log(this.wineData.retailers[0]);
   },
   methods:{
     linkClick(event){
@@ -136,8 +135,8 @@ export default {
 <style>
   /*字体标红*/
   em.search-k-w{
-    /*color:#BE344E !important;*/
-    /*font-weight: bold;*/
+    color:#BE344E !important;
+    font-weight: bold;
   }
 </style>
 <style scoped lang="less" rel="stylesheet/less">
@@ -204,8 +203,10 @@ export default {
       }
     }
     .shangjia {
+        margin-right: 5px;
         >span{
           display: inline-block;
+          margin-right:8px;
           font-size: 13px;
         }
     }
