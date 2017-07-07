@@ -5,12 +5,13 @@
       class="auto-complete"
       v-model="inputValue"
       :fetch-suggestions="querySearch"
-      placeholder=""
+      placeholder="请输入想要搜索的酒"
       :trigger-on-focus="true"
       @select="handleSelect"
       size="large"
+		id="search"
     ></el-autocomplete>
-    <button ref="searchBtn" class="search-btn" @click="searchClick">搜索</button>
+    <button ref="searchBtn" class="search-btn" @click="searchClick"><i class="iconfont">&#xe622;</i></button>
     <div class="buy-only">
 			<el-checkbox v-model="isBuyOnly" @change="onCheckedChange" >只查找可购买</el-checkbox>
     </div>
@@ -94,6 +95,9 @@ export default {
 }
 </script>
 <style scoped lang="less" rel="stylesheet/less">
+	#search input{
+		border-radius: 0;
+	}
 .text-search{
 	position: relative;
 	width:100%;
@@ -103,17 +107,25 @@ export default {
 	transform:translateY(-15px);
 	.auto-complete{
 		flex:1 1 auto;
-		margin-right:10px;
+		/*margin-right:10px;*/
+		.el-input__inner{
+			border-radius: 0;
+		}
 	}
 	.search-btn{
-		flex:0 0 100px;
+		flex:0 0 60px;
 		width:100px;
-		height: 80%;
+		height: 82.5%;
 		line-height:  40px;
 		font-size: 18px;
 		color:white;
-		border-radius:5px;
+		border: 1px solid #cc1b4a;
+		border-radius:0px 5px 5px 0;
 		background: #cc1b4a;
+		>i{
+			font-size: 20px;
+			line-height:40px;
+		}
 	}
 	.buy-only{
 		position: absolute;
@@ -121,7 +133,7 @@ export default {
 		left:0; top:110%;
 		height:28px;
 		.el-checkbox{
-			color:white;
+			/*color:white;*/
 		}
 	}
 }

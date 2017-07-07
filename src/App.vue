@@ -133,7 +133,8 @@ export default {
 		height: 100px;
 		border-bottom:1px solid #ccc;
 		z-index: 100;
-		background: #961436;
+		background-color: #fff;
+
 		.wrap{
 			position: relative;
 			margin:-1px auto 0;
