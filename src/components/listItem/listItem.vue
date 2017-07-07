@@ -204,8 +204,10 @@ export default {
       }
     }
     .shangjia {
+        margin-right: 5px;
         >span{
           display: inline-block;
+          margin-right:8px;
           font-size: 13px;
         }
     }
