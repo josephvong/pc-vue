@@ -45,7 +45,7 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .selection-tag{
 	position: relative;
-	padding:5px 20px 10px 20px;
+	padding:5px 20px 10px 0px;
 	border-bottom:1px solid #cccccc;
 	.tag{
 		display: inline-block;
@@ -57,6 +57,7 @@ export default {
 		color:#666666;
 		border-radius:5px;
 		border:1px solid #999999;
+		cursor:pointer;
 		.span{
 			margin-left:5px;
 			font-size:10px;

@@ -18,19 +18,15 @@
 			</div>
 		</div>
 
-		<el-row type="flex" justify="center">  <!--body 主体 -->
-		  <el-col  :md="{span:18,offset:6}" :lg="{span:19,offset:5}">
-		  	<div class="main-right">
-		  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
-		  									@selectionTopTagClick="onTopTagClick"
-		  		></selectionTag>
+  	<div class="main-right"> <!--body 主体 -->
+  		<selectionTag v-if="selectionArr.length" :selectionArr="selectionArr"
+  									@selectionTopTagClick="onTopTagClick"
+  		></selectionTag>
 
-					<router-view>
-					</router-view>
+			<router-view>
+			</router-view>
 
-				</div>
-		  </el-col>
-		</el-row>
+		</div>
 
 		<footer class="fix-footer">
 			<div class="wrap">
@@ -143,6 +139,7 @@ export default {
 			margin:-1px auto 0;
 			width:100%;
 			max-width: 1920px;
+			min-width: 1200px;
 		}
 	}
 
@@ -150,8 +147,9 @@ export default {
 		position: fixed;
 		left:0;
 		top:100px;
-		bottom:60px;
-		width:250px;
+		bottom:40px;
+		width:20%;
+		min-width: 240px;
 		background:white;
 		transition:all 0.5s;
 		z-index: 100;
@@ -159,12 +157,11 @@ export default {
 			position: relative;
 			width:100%;
 			height:100%;
-			padding-top:50px;
+			padding-bottom:50px;
 			overflow:hidden;
-
 			.tool-top{
 				position: absolute;
-				top:0px; left:0;
+				bottom:0px; left:0;
 				width:100%; height:50px;
 				padding:10px 0;
 				text-align: center;
@@ -187,8 +184,8 @@ export default {
 		}
 	}
 	.main-right{
-		margin:0 auto;
-		padding:15px 30px;
+		width:97%;
+		padding:15px 0;
 		min-height: 600px;
 	}
 
@@ -198,7 +195,7 @@ export default {
 		left:0;
 		bottom:0;
 		width:100%;
-		height: 60px;
+		height: 40px;
 		padding-top: 30px;
 		background-color: #e6e6e6;
 		.wrap{
@@ -208,18 +205,17 @@ export default {
 			margin:0 auto;
 		}
 	}
-	@media only screen and (min-width:1440px ){
-   	.main-left{
-	   	width:300px;
-   	}
-	}
-	@media only screen and (max-width:992px ){
+
+	@media only screen and (max-width:1200px ){
    	.main-left{
    		transform:translateX(-95%)
    	}
    	.main-left:hover{
    		transform:translateX(0%)
    	}
+   	.main-right{
+			padding:15px 0px 15px 0px;
+		}
 	}
 }
 

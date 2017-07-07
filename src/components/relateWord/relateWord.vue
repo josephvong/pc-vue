@@ -58,22 +58,22 @@ export default {
 <style scoped lang="less" rel="stylesheet/less">
 .relate-word{
   width:100%;
-  padding:10px 30px;
+  padding:10px 0px;
   h4{
   	line-height: 40px;
-  	font-size: 26px;
+  	font-size: 22px;
   	color:#961436;
   }
 	.word-wrap{
-		padding:10px;
+		padding:10px 0;
 		.word{
 			display:inline-block;
 			text-align: center;
 			cursor:pointer;
 			padding:0 20px;
-			line-height: 40px;
+			line-height: 30px;
 			span{
-				font-size: 18px;
+				font-size: 16px;
 				color:blue;
 				border-bottom:1px solid blue;
 			}:hover{

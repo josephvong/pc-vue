@@ -12,7 +12,7 @@
 				</li>
 			</ul>
 
-			<el-collapse v-if="Key=='国家'" v-show="currentCountry" ref="countrySubTree" >
+			<el-collapse v-if="Key=='国家'" v-show="currentCountry" ref="countrySubTree" class="sub-collapse" >
 				<el-collapse-item title="产区" ref="regionTree" name="产区" v-show="regionList.length">
 					<ul>
 						<li v-for="(item,index) in regionList" :key="index" @mouseenter="onTagHover" :toolShow="true">
@@ -90,8 +90,8 @@ export default {
 				this.isCountryExp = true
 			}
 		},
-		getSublist(){  //联动 生成  子列表
-			let TargetElement =event.target || event.srcElement;
+		getSublist(TargetElement){  //联动 生成  子列表
+			//let TargetElement =event.target || event.srcElement;
 			this.regionList = []; this.levelList = []; this.styleList=[];
 			let tempRegionList = []; let tempLevelList =[]; let tempStyleList = [];
 			this.currentCountry = TargetElement.getAttribute("id");
@@ -109,7 +109,8 @@ export default {
 			this.styleList =  tempStyleList
 
 		},
-		onTagHover(){  // 鼠标覆盖 选项时 触发
+		onTagHover(e){  // 鼠标覆盖 选项时 触发
+			let event = e||window.event;
 			let TargetElement =event.target || event.srcElement;
 			if(TargetElement.getAttribute("toolshow")){
 				TargetElement.querySelector('.tooltip').style.left = event.clientX + 'px'
@@ -119,10 +120,11 @@ export default {
 
 		},
 
-		onTagClick(event){  // 点击选项 的函数
+		onTagClick(e){  // 点击选项 的函数
+			let event = e||window.event;
 			let TargetElement =event.target || event.srcElement;
 			if(TargetElement.getAttribute("catalogType")=="国家"){
-					this.getSublist();
+					this.getSublist(TargetElement);
 					let subCheckInput = this.$refs.countrySubTree[0].$el.querySelectorAll('.tree-select input:checked');
 					for (var i = 0; i < subCheckInput.length; i++) {
 						subCheckInput[i].checked=false;
@@ -184,12 +186,13 @@ export default {
 
 .tree-select{
 	position: relative;
+	padding:0 10px;
 	.country-remove{
 		position: absolute;
 		width:14px;
 		height:14px;
-		right:25px;
-		top: 48px ;
+		right:30px;
+		top: 60px ;
 		border-radius: 50%;
 		text-align: center;
 		line-height: 12px;
@@ -236,31 +239,46 @@ export default {
 	label{
 		display: inline-block;
 		width:100%;
-		height:24px;
-		line-height: 24px;
+		height:28px;
+		line-height: 28px;
 		padding:0 10px;
+		font-size: 14px;
 		cursor:pointer;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		color: #666666;
+	}
+	label:hover{
+		color: #B5586F;
+		font-weight: bold;
 	}
 	input:checked + label{
 		border:1px dashed #961436;
 	}
-
-
 }
 
 </style>
 <style lang="less" rel="stylesheet/less">
+.el-collapse{
+	border:none
+}
 .el-collapse .el-collapse-item__header{
-	height:30px;
-	line-height: 30px;
-	font-size: 14px;
-	font-weight: bold;
+	height:40px;
+	line-height: 40px;
+	font-size: 18px;
 	color:#333333;
 	i{
-		font-size: 13px;
+		font-size: 10px;
 	}
+}
+.el-collapse-item__wrap{
+	background: white;
+	border-bottom:none;
+}
+.sub-collapse .el-collapse-item__header{
+	height:36px;
+	line-height: 36px;
+	font-size: 16px;
 }
 </style>
