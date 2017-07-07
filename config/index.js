@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/dataApi':{
-            target:'http://tfrontwordsearch.9kacha.com/dataApi/',//
+            target:'http://tsearch.9kacha.com/dataApi/',//
             changeOrigin: true,
             pathRewrite: {
               '^/dataApi': ''
