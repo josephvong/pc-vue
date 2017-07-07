@@ -2,7 +2,7 @@
 	<div class="selection-tag">
 		<!-- <div class="clean-btn" @click="onCleanBtnClick">清空</div> -->
 		 <div class="tag" v-for="item in selectionArr" @click="selectTopTagClick(item)">
-			{{item}}  <span>x</span>
+			{{item[1]}}  <span>x</span>
 		</div>
 	</div>
 </template>
@@ -28,7 +28,7 @@ export default {
 	},
 	methods: {
 		selectTopTagClick(item){
-			this.$emit('selectionTopTagClick',item)
+			this.$emit('selectionTopTagClick',item[1])
 		},
 		/*onCleanBtnClick(){
 			eventHub.$emit('cleanTopTag')

@@ -32,13 +32,13 @@ export default {
 	methods:{
 		relateWordSelect(item){
 			this.$router.push({ path: '/result/1'}) // 切换路由
-      this.setSearchText(item);
-      eventHub.$emit("relateWordClick",item);  // 从全局事件总线 中派发 事件
+      this.setSearchData({text:item,obj:null});
+      eventHub.$emit("relateWordClick",item);  // 从全局事件总线 中派发 事件, 此事件在 textSearch组件 中引用
 
 		},
 		//--------------- 引入 Mutation 方法-----------------
       ...mapMutations({
-	      setSearchText:'SET_SEARCH_TEXT', // 引入 mutation 中的 方法  映射给组件中的‘setSearchText’
+	      setSearchData:'SET_SEARCH_DATA', // 引入 mutation 中的 方法  映射给组件中的‘setSearchData’
 	    })
 	},
 	watch:{

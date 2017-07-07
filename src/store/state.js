@@ -5,6 +5,7 @@
 
 const state = {
 	searchText:'', // 搜索字段
+	searchData:{text:'',obj:null}, // 搜索内容
 
 	totalMount:0,	 // 结果总数
 

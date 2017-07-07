@@ -7,7 +7,7 @@
 		<el-collapse-item v-for="(Value,Key,Index) in tagData" v-if="Value.itemLevel==0" v-show="Key!='赛事奖项'" :title="Key" :name="Key" :key="Index">
 			<ul>
 				<li v-for="(item,index) in Value.item" :key="index" :name="item.name" :type="Key" v-show="Key!='国家'||!currentCountry||item.name==currentCountry">
-					<input :type="Value.multiSelect==0?'radio':'checkbox'" :name="Key" :id="item.name" :catalogType="Key" @click="onTagClick" />
+					<input :type="Value.multiSelect==0?'radio':'checkbox'" :name="Key" :id="item.name" :catalogType="Key" :fieldType="item.field" @click="onTagClick" />
 					<label :for="item.name">{{item.name}}</label>
 				</li>
 			</ul>
@@ -16,7 +16,7 @@
 				<el-collapse-item title="产区" ref="regionTree" name="产区" v-show="regionList.length">
 					<ul>
 						<li v-for="(item,index) in regionList" :key="index" @mouseenter="onTagHover" :toolShow="true">
-							<input type="radio" name="产区" :id="item.name" catalogType="region" :parent="item.parent" @click="onTagClick" />
+							<input type="radio" name="产区" :id="item.name" catalogType="region" :parent="item.parent" :fieldType="item.field" @click="onTagClick" />
 							<label :for="item.name" :nameEn='item.name_en'>{{item.name}}</label>
 							<div class="tooltip"><!--悬浮标签-->
 								<span>{{item.name_en}}</span>
@@ -28,7 +28,7 @@
 				<el-collapse-item title="产地等级" ref="levelTree" name="产地等级" v-show="levelList.length">
 					<ul>
 						<li v-for="(item,index) in levelList" :key="index" @mouseenter="onTagHover" :toolShow="true">
-							<input type="radio" name="产地等级" :id="item.name" catalogType="level" :parent="item.parent" @click="onTagClick" />
+							<input type="radio" name="产地等级" :id="item.name" catalogType="level" :parent="item.parent" :fieldType="item.field" @click="onTagClick" />
 							<label :for="item.name" :nameEn='item.name_en' >{{item.name}}</label>
 							<div class="tooltip"><!--悬浮标签-->
 								<span>{{item.name_en}}</span>
@@ -40,7 +40,7 @@
 				<el-collapse-item title="酒款风格" ref="styleTree" name="酒款风格" v-show="styleList.length">
 					<ul>
 						<li v-for="(item,index) in styleList" :key="index" @mouseenter="onTagHover" :toolShow="true" >
-							<input type="radio" name="酒款风格" :id="item.name" catalogType="style" :parent="item.parent" @click="onTagClick" />
+							<input type="radio" name="酒款风格" :id="item.name" catalogType="style" :parent="item.parent" :fieldType="item.field" @click="onTagClick" />
 							<label :for="item.name"  >{{item.name}}</label>
 							<div class="tooltip"><!--悬浮标签-->
 								<span>{{item.name_en}}</span>
@@ -131,13 +131,12 @@ export default {
 					}
 			}
 			let selectInput = this.$refs.treeSelect.$el.querySelectorAll('.tree-select input:checked');
-			let textArr = [] // 每次点击初始化一个数组
+			let dataArr = [] // 每次点击初始化一个数组
 			for (var i = 0; i < selectInput.length; i++) {
-				textArr.push(selectInput[i].id)
+				dataArr.push([selectInput[i].getAttribute('fieldType'),selectInput[i].id])
 			}
-			/*selectInput.forEach((item)=>{ textArr.push(item.id) })*/
-			this.$emit("tagSelect",textArr); // 派发此组件的事件 给 父组件监听
-			eventHub.$emit("tagSelect") // 派发全局事件 给兄弟组件监听
+			this.$emit("tagSelect",dataArr); // 派发此组件的事件 给 父组件监听
+			//eventHub.$emit("tagSelect") // 派发全局事件 给兄弟组件监听 （此事件 在 textSearch 组件中被监听）
 		},
 
 		cleanSelectInput(){  // 清除 全部选中项 选中项

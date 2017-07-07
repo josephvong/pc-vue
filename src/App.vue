@@ -37,8 +37,9 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import {mapMutations,mapGetters} from 'vuex'
 import eventHub from 'assets/js/eventHub'
+import {binArrToObj} from 'assets/js/cusFn'
 
 import mainHeader from 'components/mainHeader/mainHeader'
 import bottomPage from 'components/bottomPage/bottomPage'
@@ -54,6 +55,13 @@ export default {
   		textSearchMode:false  // 是否输入框搜索状态 true 为编辑搜索，false 为选择
   	}
   },
+  computed:{
+
+  	//----------------------------
+  	...mapGetters([
+      'searchData'
+    ])
+  },
   methods:{
   	cleanTreeSelect(){  // 左侧点击删除 按钮
   		this.$refs.treeSelect.cleanSelectInput();
@@ -65,33 +73,40 @@ export default {
   	},
 
   	onTopTagClick(text){  // 顶部选中标签 点击事件
-  		let index= this.selectionArr.indexOf(text) // 获取点击标签index（位置）
+  		let index= this.selectionArr.findIndex((item)=>{return item[1]==text}) // 获取点击标签index（位置）
   		this.selectionArr.splice(index,1);  // 在 selectionArr 删掉目标 tag
   		this.$refs.treeSelect.removeSingleInput(text,index);
   	},
-
   	//------------------------------------------------------------
 	  ...mapMutations({
-      setSearchText:'SET_SEARCH_TEXT'
+      setSearchData:'SET_SEARCH_DATA',
     }),
 
   },
   watch:{
   	selectionArr(newArr,oldArr){ // 监控 选择选项数组的改变
   		let searchText ='';
+  		let tempObj = Object.assign({},this.searchData);
   		if(!newArr.length){  // 若数组 为空时 （顶部选项被清空）
   			if(!this.textSearchMode){ // 判断 是否 是 通过 编辑搜索的方式来清空，不是的话 回到默认页面
-  				//this.$router.push({ path: '/default' })  //不跳回默认起始页
-  				return true
+  				if(tempObj.text){ //如果有 搜索文字
+						tempObj.obj = null
+		    		this.setSearchData(tempObj);
+  				}else{
+  					//this.$router.push({ path: '/default' })
+  					this.setSearchData({text:'',obj:null});
+  				}
   			}
   		}else{  // 数组没有清空时 ，拼接数组 进行搜索
-  			searchText = newArr.join();
-  			console.log(searchText);
+  			//searchText = newArr.join();
   			this.$router.push({
 	    		path: '/result/1'
 	    	})
 	    	this.textSearchMode = false
-	    	this.setSearchText(searchText)
+	    	tempObj.obj = binArrToObj(newArr)
+	    	this.setSearchData(tempObj);
+
+	    	//this.setSearchData({text:'',obj:binArrToObj(newArr)})
   		}
   	}
   },

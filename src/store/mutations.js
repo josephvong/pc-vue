@@ -10,6 +10,9 @@ const mutations = {  // 所有方法 的 容器
 	[types.SET_SEARCH_TEXT](state,value){ // 更改 当前 搜索值
 		state.searchText = value
 	},
+	[types.SET_SEARCH_DATA](state,obj){ // 更改 当前 搜索数据
+		state.searchData = obj
+	},
 
 	[types.SET_TOTAL_MOUNT](state,number){ // 更改 当前 搜索值
 		state.totalMount = number

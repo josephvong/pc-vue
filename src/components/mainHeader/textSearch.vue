@@ -49,23 +49,28 @@ export default {
       	this.$router.push({
       		path: '/result/1'
       	}) // 切换路由
-        this.setSearchText(item.value) // 调用 vuex 里面的Mutation 函数
+
+        this.setSearchData({text:item.value,obj:null})// 调用 vuex 里面的Mutation 函数
+
         eventHub.$emit('textSearchEnter') // 利用全局事件总线派发事件
       },
       searchClick(){  // 确认按钮跳转
       	if(this.inputValue){
       		this.$router.push({ path: '/result/1'}) // 切换路由
-      		this.setSearchText(this.inputValue)  // 调用 vuex 里面的Mutation 函数
+
+      		this.setSearchData({text:this.inputValue,obj:null})// 调用 vuex 里面的Mutation 函数
+
       		eventHub.$emit('textSearchEnter') // 利用全局事件总线派发事件
       	}
       },
       onCheckedChange(){
+      	this.$router.push({ path: '/result/1'})
       	this.setBuyOnly(this.isBuyOnly)
       },
 
       //--------------- 引入 Mutation 方法-----------------
       ...mapMutations({
-	      setSearchText:'SET_SEARCH_TEXT', // 将 mutation 里面的 ‘SET_SEARCH_TEXT’（mut-types里面设的常量名）映射给组件中的‘setSearchText’
+	    	setSearchData:'SET_SEARCH_DATA',// 将 mutation 里面的 ‘SET_SEARCH_DATA’（mut-types里面设的常量名）映射给组件中的‘setSearchDATA’
 	    	setBuyOnly:'SET_BUY_ONLY'
 	    })
 
@@ -79,11 +84,11 @@ export default {
 			}
 		}
 		// 监听全局左侧栏的选择事件
-		eventHub.$on('tagSelect',()=>{
+		/*eventHub.$on('tagSelect',()=>{
 			if(this.inputValue!==''){
 				this.inputValue=''
 			}
-		})
+		})*/
 
 		// 监听全局 底部 关联词 点击 事件
 		eventHub.$on('relateWordClick',(wordStr)=>{

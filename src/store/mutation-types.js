@@ -5,6 +5,7 @@
 */
 
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT'  // 设置 搜索字段 的方法
+export const SET_SEARCH_DATA = 'SET_SEARCH_DATA'  // 设置 搜索数据 的方法
 
 export const SET_TOTAL_MOUNT ='SET_TOTAL_MOUNT'
 
