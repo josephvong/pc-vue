@@ -6,12 +6,13 @@
     <div class="introduce">
         <!--酒名称-->
        <div class="title">
-         <h5>
+         <h5><!--标题-->
            <a :href="wineData.h5_url"  target="_blank">
              <span v-html="wineData.name.name_ch" v-if="wineData.name.name_ch"></span>
              <span v-html="wineData.name.name_en"></span>
            </a>
          </h5>
+           <!--价格-->
          <p v-show="wineData.price || wineData.buy_info.length">
            <span v-show="wineData.price"><i>￥</i>{{wineData.price}}.00</span>
          </p>
@@ -63,7 +64,7 @@
             <i class="iconfont">&#xe60d;</i>
             酒类型：<span v-html="wineData.wine_type.name_ch"></span>/<span v-html="wineData.wine_type.name_en"></span>
               <i class="iconfont sugar">&#xe607;</i>
-              糖份：<span v-html="wineData.sugar.name_ch"></span>/<span v-html="wineData.sugar.name_en"></span>
+            糖份：<span v-html="wineData.sugar.name_ch"></span>/<span v-html="wineData.sugar.name_en"></span>
           </p>
         </div>
 
